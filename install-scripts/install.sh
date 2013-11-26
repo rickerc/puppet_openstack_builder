@@ -55,7 +55,7 @@ UcXHbA==
 # Fix puppet, clobbering any existing puppet version to ensure
 # we are using the puppet 3.2 we target
 dpkg --purge puppet puppet-common
-rm -f /etc/puppet/puppet.conf
+rm -rf /etc/puppet/puppet.conf /var/lib/puppet
 apt-get update
 apt-get install -y git apt rubygems puppet
 
