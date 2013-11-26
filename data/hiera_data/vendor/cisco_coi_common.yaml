@@ -6,5 +6,5 @@ puppet::master::version: latest
 puppet::agent::version: latest
 
 # Use our package repos
-coe::base::openstack_release: cisco_repo
-coe::base::package_repo: 'http://openstack-repo.cisco.com/openstack'
+coe::base::openstack_release: havana
+coe::base::package_repo: cisco_repo
