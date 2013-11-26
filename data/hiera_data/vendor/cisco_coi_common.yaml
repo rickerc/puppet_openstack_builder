@@ -9,3 +9,4 @@ puppet::agent::version: latest
 coe::base::openstack_release: havana
 coe::base::openstack_repo_location: 'http://openstack-repo.cisco.com/openstack'
 coe::base::package_repo: cisco_repo
+coe::base::supplemental_repo: 'http://openstack-repo.cisco.com/openstack/cisco_supplemental'
