@@ -1,0 +1,10 @@
+# COI parameters overriding common.yaml baseline
+#
+
+# Use our latest Puppet packages
+puppet::master::version: latest
+puppet::agent::version: latest
+
+# Use our package repos
+coe::base::openstack_release: cisco_repo
+coe::base::package_repo: 'http://openstack-repo.cisco.com/openstack'
