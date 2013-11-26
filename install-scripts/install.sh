@@ -52,6 +52,10 @@ UcXHbA==
 =v6jg
 -----END PGP PUBLIC KEY BLOCK-----" | apt-key add -
 
+# Fix puppet, clobbering any existing puppet version to ensure
+# we are using the puppet 3.2 we target
+dpkg --purge puppet puppet-common
+rm -f /etc/puppet/puppet.conf
 apt-get update
 apt-get install -y git apt rubygems puppet
 
