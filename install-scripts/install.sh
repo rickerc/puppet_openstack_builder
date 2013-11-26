@@ -34,7 +34,7 @@ fi;
 # Install puppet_openstack_builder
 cd /root/
 if ! [ -d puppet_openstack_builder ]; then
-  git clone https://github.com/stackforge/puppet_openstack_builder.git /root/puppet_openstack_builder
+  git clone -b coi-development https://github.com/CiscoSystems/puppet_openstack_builder.git /root/puppet_openstack_builder
 fi
 
 

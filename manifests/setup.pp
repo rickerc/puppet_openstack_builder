@@ -5,31 +5,44 @@
 #
 
 
-# setup up puppetlabs repos and install Puppet 3.2
+# setup up Cisco repos and install Puppet 3.2
 #
 # it makes my life easier if I can assume Puppet 3.2
 # b/c then the other manifests can utilize hiera!
 # this is not required for bare-metal b/c we can assume
 # that Puppet will be installed on the bare-metal nodes
 # with the correct version
-include puppet::repo::puppetlabs
+#
+# we include Puppet 3.2 in the Cisco repo to avoid external
+# dependencies
+# 
+
+# Hard code for now -- needs to be parameterized and exposed
+file { '/etc/apt/sources.list.d/cisco-openstack-mirror_havana.list':
+  content =>
+'# cisco-openstack-mirror_havana
+deb http://openstack-repo.cisco.com/openstack/cisco havana-proposed main
+deb-src http://openstack-repo.cisco.com/openstack/cisco havana-proposed main',
+}
 
 case $::osfamily {
   'Redhat': {
-    $puppet_version = '3.2.3-1.el6'
+    $puppet_version = latest
     $pkg_list       = ['git', 'curl', 'httpd']
   }
   'Debian': {
-    $puppet_version = '3.2.3-1puppetlabs1'
+    $puppet_version = latest
     $pkg_list       = ['git', 'curl', 'vim', 'cobbler']
     package { 'puppet-common':
-      ensure => $puppet_version,
+      ensure  => $puppet_version,
+      require => File['/etc/apt/sources.list.d/cisco-openstack-mirror_havana.list'],
     }
   }
 }
 
 package { 'puppet':
   ensure  => $puppet_version,
+  require => File['/etc/apt/sources.list.d/cisco-openstack-mirror_havana.list'],
 }
 
 # dns resolution should be setup correctly
@@ -80,6 +93,7 @@ if $::puppet_run_mode != 'agent' {
   - jenkins
   - user.%{scenario}
   - user.common
+  - "vendor/osfamily/cisco_coi_%{osfamily}"
   - "osfamily/%{osfamily}"
   - "enable_ha/%{enable_ha}"
   - "install_tempest/%{install_tempest}"
@@ -93,6 +107,7 @@ if $::puppet_run_mode != 'agent' {
   - "password_management/%{password_management}"
   - "scenario/%{scenario}"
   - grizzly_hack
+  - vendor/cisco_coi_common
   - common
 :yaml:
    :datadir: /etc/puppet/data/hiera_data
