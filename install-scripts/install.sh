@@ -137,13 +137,13 @@ EOF
   export git_protocol='https'
   librarian-puppet install --verbose
 
+  cp -R /root/puppet_openstack_builder/modules /etc/puppet/
+  cp -R /root/puppet_openstack_builder/data /etc/puppet/
+  cp -R /root/puppet_openstack_builder/manifests /etc/puppet/
+
   export FACTER_build_server=${build_server}
 
 fi
-
-cp -R /root/puppet_openstack_builder/modules /etc/puppet/
-cp -R /root/puppet_openstack_builder/data /etc/puppet/
-cp -R /root/puppet_openstack_builder/manifests /etc/puppet/
 
 export FACTER_build_server_domain_name=${domain}
 export FACTER_build_server_ip=${build_server_ip}
