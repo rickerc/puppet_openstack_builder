@@ -4,6 +4,7 @@
 # Use our latest Puppet packages
 puppet::master::version: latest
 puppet::agent::version: latest
+coi::profiles::puppet::master::puppetlabs_repo: false
 
 # Use our package repos
 coe::base::openstack_release: havana
