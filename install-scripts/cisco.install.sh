@@ -1,5 +1,8 @@
 export vendor_repo=CiscoSystems
 export vendor_branch=coi-development
+export FACTER_vendor=cisco
+export FACTER_vendorrepo=coi
+export FACTER_vendorpuppet=vendor
 
 # Add Cisco repo
 cat > /etc/apt/sources.list.d/cisco-openstack-mirror_havana.list<<EOF
