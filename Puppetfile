@@ -66,7 +66,7 @@ mod 'bodepd/scenario_node_terminus',
   :git => 'https://github.com/bodepd/scenario_node_terminus'
 mod 'CiscoSystems/coi',
   :git => "#{base_url}/CiscoSystems/puppet-COI",
-  :ref => 'havana'
+  :ref => 'master'
 mod 'puppetlabs/postgresql',
   :git => "#{base_url}/puppetlabs/puppetlabs-postgresql",
   :ref => '2.5.0'
